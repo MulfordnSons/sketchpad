@@ -1,41 +1,44 @@
 // Sets important constants and variables
 
-const container = document.getElementById("container");
-let rows = document.getElementsByClassName("gridRow");
-let cells = document.getElementsByClassName("cell");
+// const container = document.getElementById("container");
+// let rows = document.getElementsByClassName("gridRow");
+// let cells = document.getElementsByClassName("cell");
 
-// Creates a default grid sized 16x16
-function defaultGrid() {
-    makeRows(90);
-    makeColumns(90);
-}
+// // Creates a default grid sized 16x16
+// function defaultGrid() {
+//     makeRows(50);
+//     makeColumns(50);
+// }
 
-// Takes (rows, columns) input and makes a grid
-function makeRows(rowNum) {
+// // Takes (rows, columns) input and makes a grid
+// function makeRows(rowNum) {
 
-    // Creates rows
-    for (r = 0; r < rowNum; r++) {
-        let row = document.createElement("div");
-        container.appendChild(row).className = "gridRow";
-    };
-};
+//     // Creates rows
+//     for (r = 0; r < rowNum; r++) {
+//         let row = document.createElement("div");
+//         container.appendChild(row).className = "gridRow";
+//     };
+// };
 
-// Creates columns
-function makeColumns(cellNum) {
-    for (i = 0; i < rows.length; i++) {
-        for (j = 0; j < cellNum; j++) {
-            let newCell = document.createElement("div");
-            rows[j].appendChild(newCell).className = "cell";
-        };
+// // Creates columns
+// function makeColumns(cellNum) {
+//     for (i = 0; i < rows.length; i++) {
+//         for (j = 0; j < cellNum; j++) {
+//             let newCell = document.createElement("div");
+//             rows[j].appendChild(newCell).className = "cell";
+//         };
 
-    };
-};
+//     };
+// };
 
 
-defaultGrid()
-document.querySelectorAll('.cell').forEach(item => {
-    item.addEventListener('mouseover', event => {
-      item.style.backgroundColor = 'cyan'
-      console.log('i should turn red')
-        })
-    })
+// defaultGrid()
+// document.querySelectorAll('.cell').forEach(item => {
+//     item.addEventListener('mouseover', event => {
+//       item.style.backgroundColor = 'cyan'
+//       console.log('i should turn red')
+//         })
+//     })
+
+// size of cells need to be tied to a proportion of total size of container. i.e. 
+//  cells will get bigger if there are less of them.
