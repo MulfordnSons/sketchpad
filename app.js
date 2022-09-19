@@ -2,8 +2,8 @@ const rangeValue = document.getElementById('myRange');
 const grid = document.getElementById('grid-container')
 const defaultColor = 'CYAN'
 const defaultMode = 'color'
-const currentMode = defaultMode
-const currentColor = defaultColor
+let currentMode = 'color'
+let currentColor = '#000000' 
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
@@ -42,6 +42,30 @@ if (currentMode === 'rainbow') {
     e.target.style.backgroundColor = '#fefefe'
 }}
 
+colorPicker = document.getElementById('colorpicker')
+colorPicker.onchange = (event) => {
+     currentColor = colorPicker.value
+}
+
+
+colorButton = document.getElementById('color-mode')
+colorButton.onclick = (event) => {
+    console.log('color')
+    currentMode = 'color'
+}
+
+rainbowButton = document.getElementById('rainbow-mode')
+rainbowButton.onclick = (event) => {
+    console.log('rainbow')
+    currentMode = 'rainbow'
+}
+
+eraserButton = document.getElementById('eraser-mode')
+eraserButton.onclick = (event) => {
+    console.log('eraser')
+    currentMode = 'eraser'
+}
+
 function clearGrid() {
    document.querySelectorAll('.grid-element').forEach(element => {
     element.style.backgroundColor = ''
@@ -49,17 +73,17 @@ function clearGrid() {
 }
 
 // ties clear button to erase function
-document.getElementById('erase-button').onclick = clearGrid
+document.getElementById('clear-button').onclick = clearGrid
 
-function toggleGridLines() {
-    document.querySelectorAll('.grid-element').forEach(element => {
-        element.style.border = '0.5px solid rgba(0, 0, 0, 0.1)';
-       });
-}
+// function toggleGridLines() {
+//     document.querySelectorAll('.grid-element').forEach(element => {
+//         element.style.border = '0.5px solid rgba(0, 0, 0, 0.1)';
+//        });
+// }
 
 // ties toggle lines to toggle button - doesn't really work tho, scales incorrectly
 //  scales in correctly after changing grid size
-document.getElementById('toggle-grid').onclick = toggleGridLines
+// document.getElementById('toggle-grid').onclick = toggleGridLines
 
 
 window.onload = () => {
