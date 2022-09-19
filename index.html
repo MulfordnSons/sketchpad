@@ -11,27 +11,26 @@
     </div>
 
     <div class="app">
-
         <div class="options">
             <div>color wheel</div>
             <button>color mode</button>
             <button>rainbow mode</button>
             <button>eraser</button>
-            <button>clear</button>
+            <button id="toggle-grid">toggle lines</button>
+            <button id='erase-button'>clear</button>
+            <div id="gridSize">16 x 16</div>
             <div class="slidecontainer">
-                <input type="range" min="1" max="64" value="16" class="slider" id="myRange">
+                <input type="range" min="16" max="64" value="16" class="slider" id="myRange">
               </div>
-    
         </div>
-
-        <div class="grid-container">
-            <div class="grid-element">1</div>
-            <div class="grid-element">1</div>
-            <div class="grid-element">1</div>
-            <div class="grid-element">1</div>
+        <div class="grid-container" id="grid-container">
         </div>
-    
     </div>
+
+    <div class="footer-container">
+        <div>Copyright @ MulfordnSons 2022 - GitHub</div>
+    </div>
+    
     
     <script src="app.js"></script>
 </body>

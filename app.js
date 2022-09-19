@@ -1,44 +1,67 @@
-// Sets important constants and variables
+const rangeValue = document.getElementById('myRange');
+const grid = document.getElementById('grid-container')
+const defaultColor = 'CYAN'
+const defaultMode = 'color'
+const currentMode = defaultMode
+const currentColor = defaultColor
 
-// const container = document.getElementById("container");
-// let rows = document.getElementsByClassName("gridRow");
-// let cells = document.getElementsByClassName("cell");
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
 
-// // Creates a default grid sized 16x16
-// function defaultGrid() {
-//     makeRows(50);
-//     makeColumns(50);
-// }
-
-// // Takes (rows, columns) input and makes a grid
-// function makeRows(rowNum) {
-
-//     // Creates rows
-//     for (r = 0; r < rowNum; r++) {
-//         let row = document.createElement("div");
-//         container.appendChild(row).className = "gridRow";
-//     };
-// };
-
-// // Creates columns
-// function makeColumns(cellNum) {
-//     for (i = 0; i < rows.length; i++) {
-//         for (j = 0; j < cellNum; j++) {
-//             let newCell = document.createElement("div");
-//             rows[j].appendChild(newCell).className = "cell";
-//         };
-
-//     };
-// };
+rangeValue.addEventListener('change', function (e) {
+    document.getElementById('gridSize').textContent = `${rangeValue.value} x ${rangeValue.value}`
+    setupGrid(rangeValue.value)
+    clearGrid()
+})
 
 
-// defaultGrid()
-// document.querySelectorAll('.cell').forEach(item => {
-//     item.addEventListener('mouseover', event => {
-//       item.style.backgroundColor = 'cyan'
-//       console.log('i should turn red')
-//         })
-//     })
+function setupGrid(size) {
+    grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+    grid.style.gridTemplateRows = `repeat(${size}, 1fr)`
+  
+    for (let i = 0; i < size * size; i++) {
+      const gridElement = document.createElement('div')
+      gridElement.classList.add('grid-element')
+      gridElement.addEventListener('mouseover', changeColor)
+      gridElement.addEventListener('mousedown', changeColor)
+      grid.appendChild(gridElement)
+    }
+  }
+  
+function changeColor(e) {
+if (e.type === 'mouseover' && !mouseDown) return
+if (currentMode === 'rainbow') {
+    const randomR = Math.floor(Math.random() * 256)
+    const randomG = Math.floor(Math.random() * 256)
+    const randomB = Math.floor(Math.random() * 256)
+    e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+} else if (currentMode === 'color') {
+    e.target.style.backgroundColor = currentColor
+} else if (currentMode === 'eraser') {
+    e.target.style.backgroundColor = '#fefefe'
+}}
 
-// size of cells need to be tied to a proportion of total size of container. i.e. 
-//  cells will get bigger if there are less of them.
+function clearGrid() {
+   document.querySelectorAll('.grid-element').forEach(element => {
+    element.style.backgroundColor = ''
+   });
+}
+
+// ties clear button to erase function
+document.getElementById('erase-button').onclick = clearGrid
+
+function toggleGridLines() {
+    document.querySelectorAll('.grid-element').forEach(element => {
+        element.style.border = '0.5px solid rgba(0, 0, 0, 0.1)';
+       });
+}
+
+// ties toggle lines to toggle button - doesn't really work tho, scales incorrectly
+//  scales in correctly after changing grid size
+document.getElementById('toggle-grid').onclick = toggleGridLines
+
+
+window.onload = () => {
+    setupGrid(16)
+}
