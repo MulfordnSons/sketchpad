@@ -75,16 +75,6 @@ function clearGrid() {
 // ties clear button to erase function
 document.getElementById('clear-button').onclick = clearGrid
 
-// function toggleGridLines() {
-//     document.querySelectorAll('.grid-element').forEach(element => {
-//         element.style.border = '0.5px solid rgba(0, 0, 0, 0.1)';
-//        });
-// }
-
-// ties toggle lines to toggle button - doesn't really work tho, scales incorrectly
-//  scales in correctly after changing grid size
-// document.getElementById('toggle-grid').onclick = toggleGridLines
-
 
 window.onload = () => {
     setupGrid(16)
